@@ -1,25 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useReducer } from 'react';
+import { AppCountext } from './context/AppContext';
+import { Div } from './components/Div';
+import { globalState } from './context/AppContext/data';
+
+const reducer = (state, action) => {
+  return {...state}
+}
 
 function App() {
+  const [state, dispatch] = useReducer(reducer, globalState)
+  const {title, body, counter} = state
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <>
+    <div>
+      <h1>
+       {title}, {counter}
+      </h1>
+      <button onClick={() => dispatch({type: 'muda'})}>Click</button>
     </div>
-  );
+    </>)
 }
 
 export default App;
